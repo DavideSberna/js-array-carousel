@@ -1,0 +1,46 @@
+#section-slider{
+    width: 400px;
+    height: 300px;
+}
+.slider{
+    width: 400px;
+    height: 300px;
+    display: none;
+}
+#section-slider img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+.slider.active{
+    display: block;
+}
+.thumbs-container{
+    width: 150px;
+    height: calc(300px / 5);
+}
+#section-thumbs img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+#section-thumbs button{
+    background-color: transparent;
+    border: none;
+    color: red;
+    font-size: 1.2em;
+    z-index: 1000;
+}
+.next{
+    position: absolute;
+    top: 10px;
+    left: calc(50% - 0.6em);
+}
+.prev{
+    position: absolute;
+    bottom: 10px;
+    left: calc(50% - 0.6em);
+}
+.border{
+    border: 1px solid white;
+}
