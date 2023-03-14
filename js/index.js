@@ -23,13 +23,12 @@ for(let i = 0; i < arrImage.length; i++){
             <div class="card border-0 slider">
               <img src="${arrImage[i]}" alt="${i}">
             </div> `
-    thumbs += `<div class="card border-0 slider thumbs-container active">
+    thumbs += `<div class="slider thumbs-container active">
                  <img src="${arrImage[i]}" alt="${[i]}">
                </div>`
 }
 slider.innerHTML += slide;
 sliderThumbs.innerHTML += thumbs;
-console.log(sliderThumbs)
 document.querySelectorAll(".slider")[currentIndex].classList.add("active");
 document.querySelectorAll(".thumbs-container")[currentIndex].classList.add("border");
 
@@ -61,6 +60,8 @@ function prevSlide(){
     document.querySelectorAll(".slider")[currentIndex].classList.add("active");
     document.querySelectorAll(".thumbs-container")[currentIndex].classList.add("border");
 }
+
+
 
 
 

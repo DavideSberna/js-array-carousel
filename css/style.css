@@ -24,23 +24,23 @@
     height: 100%;
     object-fit: cover;
 }
-#section-thumbs button{
+#section-btn button{
     background-color: transparent;
     border: none;
     color: red;
     font-size: 1.2em;
     z-index: 8000;
 }
-.next{
+/* .next{
     position: absolute;
-    top: 10px;
+    top: -50px;
     left: calc(50% - 0.6em);
 }
 .prev{
     position: absolute;
-    bottom: 10px;
+    bottom: -50px;
     left: calc(50% - 0.6em);
-}
+} */
 .border{
     border: 1px solid white;
 }
