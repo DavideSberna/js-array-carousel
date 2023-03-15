@@ -21,10 +21,10 @@ let thumbs = "";
 for(let i = 0; i < arrImage.length; i++){
     slide += `  
             <div class="card border-0 slider">
-              <img src="${arrImage[i]}" alt="${i}">
+              <img class = "slider-img" src="${arrImage[i]}" alt="${i}">
             </div> `
     thumbs += `<div class="slider thumbs-container active">
-                 <img src="${arrImage[i]}" alt="${[i]}">
+                 <img class = "thumbs-img" src="${arrImage[i]}" alt="${[i]}">
                </div>`
 }
 slider.innerHTML += slide;
@@ -40,6 +40,7 @@ prev.addEventListener("click", prevSlide);
 function nextSlide(){
     document.querySelectorAll(".slider")[currentIndex].classList.remove("active");
     document.querySelectorAll(".thumbs-container")[currentIndex].classList.remove("border");
+    document.querySelectorAll(".thumbs-img")[currentIndex].classList.remove("opacity");
 
     if(currentIndex === arrImage.length - 1){
         currentIndex = 0;
@@ -48,10 +49,12 @@ function nextSlide(){
     }
     document.querySelectorAll(".slider")[currentIndex].classList.add("active");
     document.querySelectorAll(".thumbs-container")[currentIndex].classList.add("border");
+    document.querySelectorAll(".thumbs-img")[currentIndex].classList.add("opacity");
 }
 function prevSlide(){
     document.querySelectorAll(".slider")[currentIndex].classList.remove("active");
     document.querySelectorAll(".thumbs-container")[currentIndex].classList.remove("border");
+    document.querySelectorAll(".thumbs-img")[currentIndex].classList.remove("opacity");
     if(currentIndex === 0){
         currentIndex = arrImage.length - 1;
     } else{
@@ -59,6 +62,7 @@ function prevSlide(){
     }
     document.querySelectorAll(".slider")[currentIndex].classList.add("active");
     document.querySelectorAll(".thumbs-container")[currentIndex].classList.add("border");
+    document.querySelectorAll(".thumbs-img")[currentIndex].classList.add("opacity");
 }
 
 
