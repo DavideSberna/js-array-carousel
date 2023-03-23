@@ -31,11 +31,13 @@ slider.innerHTML += slide;
 sliderThumbs.innerHTML += thumbs;
 document.querySelectorAll(".slider")[currentIndex].classList.add("active");
 document.querySelectorAll(".thumbs-container")[currentIndex].classList.add("border");
+document.querySelectorAll(".thumbs-img")[currentIndex].classList.add("opacity");
 
 
 
 next.addEventListener("click", nextSlide);
 prev.addEventListener("click", prevSlide);
+ 
 
 function nextSlide(){
     document.querySelectorAll(".slider")[currentIndex].classList.remove("active");
@@ -51,10 +53,12 @@ function nextSlide(){
     document.querySelectorAll(".thumbs-container")[currentIndex].classList.add("border");
     document.querySelectorAll(".thumbs-img")[currentIndex].classList.add("opacity");
 }
+ 
 function prevSlide(){
     document.querySelectorAll(".slider")[currentIndex].classList.remove("active");
     document.querySelectorAll(".thumbs-container")[currentIndex].classList.remove("border");
     document.querySelectorAll(".thumbs-img")[currentIndex].classList.remove("opacity");
+    
     if(currentIndex === 0){
         currentIndex = arrImage.length - 1;
     } else{
@@ -65,7 +69,16 @@ function prevSlide(){
     document.querySelectorAll(".thumbs-img")[currentIndex].classList.add("opacity");
 }
 
+let interval; 
+function startCarousel(){
+    interval = setInterval( nextSlide , 2000);
+     
+}
+
+function stopCarousel(){
+    clearInterval(interval);
+}
 
 
-
-
+sliderRow.addEventListener("mouseover",  stopCarousel);
+sliderRow.addEventListener("mouseout", startCarousel);
