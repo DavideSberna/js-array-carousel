@@ -5,6 +5,9 @@
 .slider{
     width: 400px;
     height: 300px;
+    
+}
+.display-none{
     display: none;
 }
 #section-slider .slider-img{
@@ -19,7 +22,7 @@
     width: 150px;
     height: calc(300px / 5);
 }
-#section-thumbs .thumbs-img{
+.thumbs-img{
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -44,6 +47,24 @@
     bottom: 10px;
     right: 60px;
 }
-.border{
-    border: 1px solid white;
+.num-slider{
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    line-height: 40px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    text-align: center;
+    color: white;
+}
+.title-img{
+    position: absolute;
+    bottom: 0;
+    width: 400px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: white;
+    margin-bottom: 0;
 }

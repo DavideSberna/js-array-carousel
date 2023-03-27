@@ -1,84 +1,122 @@
 const arrImage = [
-    "img/01.webp",
-    "img/02.webp",
-    "img/03.webp",
-    "img/04.webp",
-    "img/05.webp"
-]
+    {
+        image: "../img/01.webp",
+        title: "Spiderman",
+        bgColor: "red",
+        color: "white"
+    },
+    {
+        image: "../img/02.webp",
+        title: "Sonic",
+        bgColor: "green",
+        color: "white"
+    },
+    {
+        image: "../img/03.webp",
+        title: "star wars",
+        bgColor: "yellow",
+        color: "black"
+    },
+    {
+        image: "../img/04.webp",
+        title: "Gatto ninja",
+        bgColor: "orange",
+        color: "white"
+    },
+    {
+        image: "../img/05.webp",
+        title: "Avengers",
+        bgColor: "purple",
+        color: "white"
+    },
+   
+ 
+];
 
-const sliderRow = document.querySelector("#slider-row");
-const slider = document.querySelector("#slider-row div:nth-child(1)");
-const sliderThumbs = document.querySelector("#slider-row div:nth-child(2)");
 
-const next = document.querySelector(".next");
-const prev = document.querySelector(".prev");
+
+const sliderContain = document.querySelector("#slider-row");
+const btnNext = document.querySelector(".next");
+const btnPrev = document.querySelector(".prev");
+let sliderImage = document.createElement("div");
+sliderImage.classList.add("div-element")
+let thumbsImage = document.createElement("div");
+
+
 
 let currentIndex = 0;
-let slide = "";
-let thumbs = "";
 
 
-for(let i = 0; i < arrImage.length; i++){
-    slide += `  
-            <div class="card border-0 slider">
-              <img class = "slider-img" src="${arrImage[i]}" alt="${i}">
-            </div> `
-    thumbs += `<div class="slider thumbs-container active">
-                 <img class = "thumbs-img" src="${arrImage[i]}" alt="${[i]}">
-               </div>`
+
+
+function createSlider(){
+
+    arrImage.forEach((element, index) => {
+        sliderImage.innerHTML +=  `<div class="slider display-none">
+                                        <img src="${element.image}" alt="image-${index}" class="slider-img">
+                                        <span class = "num-slider" style="background-color: ${element.bgColor}; color: ${element.color}">${index + 1}</span>
+                                        <p class = "title-img" style="background-color: ${element.bgColor}; color: ${element.color}">${element.title}</p>
+                                    </div>`
+        thumbsImage.innerHTML +=  `<div class="slider thumbs-container">
+                                        <img src="${element.image}" alt="image-${index}" class="thumbs-img" style="border: solid 5px ${element.bgColor}">
+                                    </div>`;
+                                });
+                                
+                                
+                                sliderContain.appendChild(sliderImage)
+                                sliderContain.appendChild(thumbsImage)   
+                                document.querySelectorAll(".slider")[currentIndex].style.display = "block";
+                                document.querySelectorAll(".thumbs-img")[currentIndex].classList.add("border");
+     
 }
-slider.innerHTML += slide;
-sliderThumbs.innerHTML += thumbs;
-document.querySelectorAll(".slider")[currentIndex].classList.add("active");
-document.querySelectorAll(".thumbs-container")[currentIndex].classList.add("border");
-document.querySelectorAll(".thumbs-img")[currentIndex].classList.add("opacity");
 
 
 
-next.addEventListener("click", nextSlide);
-prev.addEventListener("click", prevSlide);
- 
 
-function nextSlide(){
-    document.querySelectorAll(".slider")[currentIndex].classList.remove("active");
-    document.querySelectorAll(".thumbs-container")[currentIndex].classList.remove("border");
-    document.querySelectorAll(".thumbs-img")[currentIndex].classList.remove("opacity");
 
+
+
+function nextButton(){
+    document.querySelectorAll(".slider")[currentIndex].style.display = "none";
+    document.querySelectorAll(".thumbs-img")[currentIndex].classList.remove("border");
+   
     if(currentIndex === arrImage.length - 1){
-        currentIndex = 0;
+        currentIndex = 0
     } else{
-        currentIndex++;
+        currentIndex++
     }
-    document.querySelectorAll(".slider")[currentIndex].classList.add("active");
-    document.querySelectorAll(".thumbs-container")[currentIndex].classList.add("border");
-    document.querySelectorAll(".thumbs-img")[currentIndex].classList.add("opacity");
+    document.querySelectorAll(".slider")[currentIndex].style.display = "block";
+    document.querySelectorAll(".thumbs-img")[currentIndex].classList.add("border");   
 }
- 
-function prevSlide(){
-    document.querySelectorAll(".slider")[currentIndex].classList.remove("active");
-    document.querySelectorAll(".thumbs-container")[currentIndex].classList.remove("border");
-    document.querySelectorAll(".thumbs-img")[currentIndex].classList.remove("opacity");
+
+function prevButton(){
+    document.querySelectorAll(".slider")[currentIndex].style.display = "none";
+    document.querySelectorAll(".thumbs-img")[currentIndex].classList.remove("border");
     
     if(currentIndex === 0){
         currentIndex = arrImage.length - 1;
     } else{
         currentIndex--;
     }
-    document.querySelectorAll(".slider")[currentIndex].classList.add("active");
-    document.querySelectorAll(".thumbs-container")[currentIndex].classList.add("border");
-    document.querySelectorAll(".thumbs-img")[currentIndex].classList.add("opacity");
-}
-
-let interval; 
-function startCarousel(){
-    interval = setInterval( nextSlide , 2000);
-     
-}
-
-function stopCarousel(){
-    clearInterval(interval);
+    document.querySelectorAll(".slider")[currentIndex].style.display = "block";
+    document.querySelectorAll(".thumbs-img")[currentIndex].classList.add("border");
 }
 
 
-sliderRow.addEventListener("mouseover",  stopCarousel);
-sliderRow.addEventListener("mouseout", startCarousel);
+
+let interval;
+function startSlide(){
+    interval = setInterval(nextButton, 1000)
+
+}
+function stopSlide(){
+    clearInterval(interval)
+}
+
+
+
+createSlider()
+sliderContain.addEventListener("mouseover", stopSlide);
+sliderContain.addEventListener("mouseout", startSlide);
+btnNext.addEventListener("click", nextButton)
+btnPrev.addEventListener("click", prevButton)
